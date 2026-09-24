@@ -1,2 +1,73 @@
-<div> a
-<div/>
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>チャリデータ</title>
+<style>
+:root{--bg:#eef1f3;--cd:#fff;--ink:#13202a;--sub:#5d6b76;--ln:#d5dce1;--ac:#e8590c;--sf:#f5e9df;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a17;--cd:#16261f;--ink:#eaf1ee;--sub:#9fb2aa;--ln:#28402f;--ac:#ff8a3d;--sf:#2a2a1c}}
+:root[data-theme="dark"]{--bg:#0e1a17;--cd:#16261f;--ink:#eaf1ee;--sub:#9fb2aa;--ln:#28402f;--ac:#ff8a3d;--sf:#2a2a1c}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{margin:0;font-size:28px;font-weight:900}h1 span{color:var(--ac)}
+.s{color:var(--sub);font-size:12.5px}
+.tabs{display:flex;gap:8px;margin:12px 0}
+button{font:inherit;color:var(--ink);cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.tabs button{flex:1;padding:10px;border:2px solid var(--ink);background:none;border-radius:8px;font-weight:700}
+.tabs .on{background:var(--ink);color:var(--bg)}
+.c{background:var(--cd);border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:8px}
+.r{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--cd);border:1px solid var(--ln);border-radius:10px;padding:10px;margin-bottom:8px}
+.no{flex:none;width:32px;height:32px;border-radius:6px;display:grid;place-items:center;font-weight:900;border:1px solid rgba(0,0,0,.25)}
+.g{flex:1;min-width:0}.nm{font-weight:700}
+.p{font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;background:var(--sf);color:var(--ac);white-space:nowrap}
+h2{font-size:16px;margin:0 0 6px}h3{font-size:13px;margin:14px 0 6px;color:var(--sub)}
+.b{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:13px}.b b{width:56px;flex:none}
+.t{flex:1;height:10px;background:var(--ln);border-radius:5px;overflow:hidden}.t i{display:block;height:100%;background:var(--ink)}.t i.h{background:var(--ac)}
+.b em{width:36px;text-align:right;font-style:normal}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.st div{background:var(--bg);border-radius:8px;padding:6px}.st b{display:block;font-size:19px}.st span{font-size:11.5px;color:var(--sub)}
+a{color:var(--ac);font-weight:700}
+.bk{border-top:1px solid var(--ln);padding:8px 0;font-size:13px}
+.bk:first-child{border:0}
+.rg{font-weight:900;margin:14px 0 4px;color:var(--ac)}
+.bt{background:none;border:0;color:var(--ac);font-weight:700;padding:0 0 8px}
+.sel{padding:8px;border:1px solid var(--ln);border-radius:8px;background:var(--cd);color:var(--ink);font:inherit;margin-bottom:8px}
+.pz{display:flex;align-items:center;gap:12px;margin-top:8px}.pz svg{flex:none}
+.lg{font-size:12.5px;line-height:1.7}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.n{font-size:12px;color:var(--sub);margin-top:16px}
+</style></head><body><div class="w">
+<h1>チャリ<span>データ</span></h1>
+<div class="s">競輪を、数字で見る。 / 2026年9月24日(木)</div>
+<div class="tabs"><button id="t1" class="on" onclick="go(1)">ホーム</button><button id="t2" onclick="go(2)">選手</button><button id="t3" onclick="go(3)">ランキング</button><button id="t4" onclick="go(4)">バンク</button></div>
+<div id="a"></div>
+<p class="n">出典: WINTICKET出走表(選手データは直近4か月の成績)、Perfecta Navi 全国バンクデータ。円グラフはA級7車の1着の決まり手割合(2021〜2025年、競輪兄弟掲載の集計)で、S級・9車立では傾向が変わります。選手データを載せているのは現時点で立川12Rのみです。</p>
+</div>
+<script>
+var WK=[["#fff","#13202a"],["#222","#fff"],["#d62828","#fff"],["#1d5fd1","#fff"],["#f4c400","#13202a"],["#1f9d55","#fff"],["#f77f00","#13202a"],["#f28cb1","#13202a"],["#8a4fc7","#fff"]];
+var M=[["立川","F1","報知ゴールドカップ・山口健治杯","最終日","12R","tachikawa"],["伊東温泉","F1","スポーツニッポン杯争奪戦","2日目","12R・ナイター","ito"],["小松島","F1","西日本カップ TIPSTAR杯","2日目","12R","komatsushima"],["弥彦","F2","オッズパーク杯","初日","7R・ミッドナイト","yahiko"],["川崎","F2","前検コメはウィンチケット杯","初日","7R・ミッドナイト","kawasaki"],["大垣","F2","福井ケーブルテレビ杯","最終日","11R","ogaki"],["奈良","F2","競輪投票サービスBetimo杯","初日","7R・ミッドナイト","nara"],["別府","F2","第8回 三洋産業杯","初日","11R・ナイター","beppu"],["熊本","F2","レイメイ藤井杯","初日","7R・モーニング","kumamoto"]];
+var R=[[1,"寺沼拓摩","東京","S1",27,115,101.87,"両",3,5,8,1,3,0,0,2,2,2,11,11.7,23.5,35.2,"武田君"],[2,"三神遼矢","福島","S2",24,127,96.71,"逃",8,14,18,12,7,0,0,17,2,0,2,80.9,90.4,90.4,"単騎"],[3,"椎木尾拓哉","和歌山","S2",41,93,104.90,"追",2,0,0,0,0,9,0,5,4,7,16,15.6,28.1,50.0,"南君"],[4,"尾方祐仁","岐阜","S2",22,123,100.46,"逃",0,12,11,4,1,0,0,2,3,5,18,7.1,17.8,35.7,"単騎"],[5,"武田亮","東京","S2",27,115,100.48,"逃",4,8,10,3,5,0,1,4,5,4,14,14.7,33.3,48.1,"自力基本"],[6,"木村直隆","兵庫","S2",48,86,95.31,"追",6,0,0,0,0,1,3,1,3,6,25,2.8,11.4,28.5,"和歌山勢"],[7,"南潤","和歌山","S1",28,111,103.14,"逃",11,15,15,6,0,1,0,4,3,4,17,14.2,25.0,39.2,"自力"]];
+var B=("北日本|函館|400|51.3|30°36′|標準的。海風の影響を受ける;北日本|青森|400|58.9|32°15′|カントややきつく直線も長い||25|52;北日本|いわき平|400|62.7|32°54′|唯一の空中バンク|18|24|58;関東|弥彦|400|63.1|32°24′|4角の緩和曲線がきつい|21||52;関東|前橋|335|46.7|36°00′|ドーム。カント日本一|34||37;関東|取手|400|54.8|31°30′|クセなし。カントややきつい;関東|宇都宮|500|63.3|25°47′|直線やや長い扁平バンク;関東|大宮|500|66.7|26°16′|直線長く追込有利|20|21|59;関東|西武園|400|47.6|29°26′|カント浅く直線短い|32|25;関東|京王閣|400|51.5|32°10′|標準的な直線。カント若干緩い|||51;関東|立川|400|58.0|31°13′|直線長く追込有利||25|51;南関東|松戸|333|38.2|29°44′|直線短く逃げ有利|31|35|34;南関東|千葉|250|-|-|屋内木製バンク;南関東|川崎|400|58.0|32°10′|オーソドックス;南関東|平塚|400|54.2|31°28′|標準的でクセなし;南関東|小田原|333|36.1|35°34′|全国屈指のカントのきつさ;南関東|伊東温泉|333|46.6|34°41′|直線長く400m感覚|·|34|36;南関東|静岡|400|56.4|30°43′|クセなし|19;中部|名古屋|400|58.8|34°01′|クセ少なく戦法を問わない;中部|岐阜|400|59.3|32°15′|直線長くカントきつい;中部|大垣|400|56.0|30°37′|伊吹おろしで風の影響大;中部|豊橋|400|60.3|33°50′|冬〜春はバックが向かい風|21||51;中部|富山|333|43.0|33°41′|先行有利の小回り||35|36;中部|松阪|400|61.5|34°25′|クセなし。カントきつい;中部|四日市|400|62.4|32°15′|直線長く海風の影響;近畿|福井|400|52.8|31°28′|逃げ・差し・捲りが均等;近畿|奈良|333|38.0|33°25′|円形に近くカント33°超|33||35;近畿|向日町|400|47.3|30°29′|標準的なバンク||25;近畿|和歌山|400|59.9|32°15′|クセなし。直線やや長め;近畿|岸和田|400|56.7|30°56′|直線は長めでクセ少;中国|玉野|400|47.9|30°37′|円に近く走りやすい;中国|広島|400|57.9|30°47′|直線は外が伸びる傾向;中国|防府|333|42.5|34°41′|直線やや短くクセ少|30;四国|高松|400|54.8|33°15′|カントきつく登る感じ;四国|小松島|400|55.5|29°46′|カント緩く海風に注意;四国|高知|500|52.0|24°29′|500mで先行が残りやすい;四国|松山|400|58.6|34°01′|高速で自力有利;九州|小倉|400|56.9|34°01′|屋根付きで世界最大級||33;九州|久留米|400|50.7|31°28′|クセなし。平均的||36;九州|武雄|400|64.4|32°00′|400mで直線最長;九州|佐世保|400|40.2|31°28′|直線短く先行やや有利;九州|別府|400|59.9|33°41′|直線長く風で追込有利;九州|熊本|400|60.3|34°15′|24年6月に400mへ改修").split(";").map(function(x){return x.split("|")});
+var A=document.getElementById("a"),TD=M.map(function(m){return m[0]});
+function nc(n){var c=WK[n-1];return '<span class="no" style="background:'+c[0]+';color:'+c[1]+'">'+n+'</span>'}
+function bank(n){return B.filter(function(b){return b[1]==n})[0]}
+var K={};"函館:30.0,24.9,44.9;青森:24.8,25.7,49.2;いわき平:25.5,24.6,50.1;弥彦:24.8,24.7,50.4;前橋:37.6,27.5,34.7;取手:28.9,26.1,45.2;宇都宮:28.1,24.3,47.8;大宮:25.6,23.0,51.3;西武園:33.4,23.9,42.7;京王閣:28.0,25.8,46.2;立川:26.9,25.2,48.1;松戸:35.9,31.3,32.9;川崎:28.9,25.9,44.6;平塚:27.1,27.3,45.6;小田原:29.1,28.1,42.8;伊東温泉:31.2,29.5,39.3;静岡:26.6,28.3,44.7;名古屋:26.8,28.6,44.9;岐阜:26.8,26.3,46.8;大垣:27.9,26.4,45.4;豊橋:25.9,28.8,45.3;富山:30.1,33.4,36.9;松阪:25.5,27.0,47.6;四日市:26.3,27.1,46.3;福井:29.6,29.6,40.4;奈良:36.8,30.3,31.8;向日町:28.9,24.2,45.2;和歌山:23.9,25.9,49.2;岸和田:28.0,28.7,43.0;玉野:26.6,27.7,45.5;広島:20.4,32.3,47.5;防府:32.2,32.7,34.2;高松:26.0,29.4,44.3;小松島:25.2,27.9,46.9;高知:22.9,25.1,51.3;松山:25.7,28.5,46.2;小倉:27.2,28.7,43.7;久留米:27.6,30.0,41.6;武雄:24.4,28.6,46.5;佐世保:26.5,27.6,45.4;別府:29.4,29.1,41.1;熊本:28.2,28.7,42.8".split(";").forEach(function(x){var p=x.split(":");K[p[0]]=p[1].split(",").map(Number)});
+function pc(n){var k=K[n];if(!k)return '<div class="s" style="margin-top:6px">決まり手データなし(千葉は250m競走のため)</div>';var o=0,c=["var(--ink)","var(--ac)","#1d5fd1"],L=["逃げ(先行押し切り)","捲り","差し"],s='<svg viewBox="0 0 42 42" width="84" height="84" role="img" aria-label="1着の決まり手の割合"><circle cx="21" cy="21" r="15.9155" fill="none" style="stroke:var(--ln)" stroke-width="7"/>',g="";k.forEach(function(v,i){s+='<circle cx="21" cy="21" r="15.9155" fill="none" style="stroke:'+c[i]+'" stroke-width="7" stroke-dasharray="'+v+' '+(100-v)+'" stroke-dashoffset="'+(25-o)+'"/>';o+=v;g+='<div><i style="background:'+c[i]+'"></i>'+L[i]+' <b>'+v+'%</b></div>'});return '<div class="pz">'+s+'</svg><div class="lg">'+g+'</div></div>'}
+function bl(b){return pc(b[1])}
+var W={basic:25,recent:20,lead:15,maki:10,diff:10,stab:10},CFG={A:50,B:42,f:[.7,.15,.15]};
+var LINES=[[7,3,6],[5,1],[2],[4]],LP={},CI={};LINES.forEach(function(l){l.forEach(function(c,i){LP[c]=l.length==1?0:i+1})});R.forEach(function(r,i){CI[r[0]]=i});
+var CN={basic:"競走得点",recent:"3連対率",lead:"先行力",maki:"捲り力",diff:"差し力",stab:"連対率"};
+function cl(x){return Math.max(0,Math.min(100,x))}
+function nmc(c){return R[CI[c]][1]}
+function calc(r){var n=r[15]+r[16]+r[17]+r[18],t2=r[15]+r[16],t3=t2+r[17];
+var c={basic:cl((r[6]-90)/25*100),recent:(t3+4)/(n+10)*100,lead:cl((r[11]+r[9]*.5)*4),maki:cl(r[12]*10),diff:cl(r[13]*10),stab:(t2+3)/(n+10)*100};
+var tot=0,ws=0,k;for(k in W){tot+=c[k]*W[k];ws+=W[k]}tot/=ws;
+var m=[r[11],r[12],r[13]],sm=m[0]+m[1]+m[2],kk=K["立川"];
+var tf=sm?(m[0]*kk[0]+m[1]*kk[1]+m[2]*kk[2])/sm/Math.max.apply(0,kk)*100:(r[7]=="追"?100:56);
+var lf={1:70,2:80,3:60,0:50}[LP[r[0]]],rf=tot*CFG.f[0]+tf*CFG.f[1]+lf*CFG.f[2];
+return{c:c,tot:tot,tf:tf,lf:lf,rf:rf,g:rf>=CFG.A?"A":rf>=CFG.B?"B":"C",n:n}}
+function go(t){for(var i=1;i<5;i++)document.getElementById("t"+i).className=i==t?"on":"";[0,today,list,rank,function(){banks("area")}][t]()}
+function hero(){var X=R.map(calc),o=R.map(function(r,i){return i}).sort(function(a,b){return X[b].rf-X[a].rf}).slice(0,3);
+var h='<div class="c"><h2>注目レース 立川12R S級決勝</h2><div class="s">16:24発走 / 7車立 / チャリデータ注目選手</div>';
+o.forEach(function(i){var r=R[i],x=X[i],t=Object.keys(x.c).sort(function(a,b){return x.c[b]-x.c[a]}).slice(0,2).map(function(k){return CN[k]}).join("・");
+h+='<div class="bk" style="display:
